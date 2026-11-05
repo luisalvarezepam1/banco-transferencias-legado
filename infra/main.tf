@@ -71,7 +71,7 @@ resource "azurerm_linux_web_app" "app" {
   app_settings = {
     SCM_DO_BUILD_DURING_DEPLOYMENT      = "true"
     WEBSITES_ENABLE_APP_SERVICE_STORAGE = "true"
-    DATABASE_PATH                       = "/home/data/transferencias.db"
+    DATABASE_PATH                       = "/home/data/transferencias-v2.db"
     DEMO_MODE                           = "1"
   }
 }
