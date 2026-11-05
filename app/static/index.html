@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transferencias Inmediatas · Banco ficticio</title>
+  <link rel="stylesheet" href="/static/estilo.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="barra__in">
+      <span class="marca">Transferencias Inmediatas <small id="version">legado</small></span>
+      <a href="/api/salud" class="enlace">API</a>
+    </div>
+  </header>
+  <div class="aviso"><p>Banco ficticio para el workshop de IA agéntica. Todos los datos son inventados.</p></div>
+
+  <main class="rejilla">
+    <section class="panel">
+      <h2>Cuentas</h2>
+      <ul id="cuentas" class="cuentas"><li class="dim">Cargando…</li></ul>
+    </section>
+
+    <section class="panel">
+      <h2>Nueva transferencia</h2>
+      <form id="form" class="formulario">
+        <label>Cuenta de origen <select name="cuenta_origen" id="origen" required></select></label>
+        <label>Cuenta de destino <select name="cuenta_destino" id="destino" required></select></label>
+        <div class="fila">
+          <label>Monto (DOP) <input name="monto" required inputmode="decimal" placeholder="1670.00"></label>
+          <label>Concepto <input name="concepto" maxlength="80" placeholder="Pago de alquiler"></label>
+        </div>
+        <button class="boton" type="submit">Transferir</button>
+      </form>
+      <p class="dim tarifas">Propias: sin cargo. Terceros: DOP 10.00 + impuesto DGII 0.15 %.</p>
+      <div id="resultado" hidden></div>
+    </section>
+
+    <section class="panel panel--ancho">
+      <h2>Últimas transferencias</h2>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>Id</th><th>Fecha</th><th>Origen → destino</th><th>Tipo</th><th class="num">Monto</th><th class="num">Comisión</th><th class="num">Impuesto</th><th class="num">Total</th></tr></thead>
+          <tbody id="historial"><tr><td colspan="8" class="dim">Sin transferencias todavía.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

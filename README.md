@@ -1,6 +1,6 @@
 # Transferencias Inmediatas · legado (Python)
 
-Aplicación de ejemplo de un **banco ficticio** para el workshop de IA agéntica. Es el sistema de origen que la [fábrica de migración](https://github.com/luisalvarezepam1/fabrica-migracion) analiza y migra a otro stack.
+Módulo de transferencias de un **banco ficticio**, con su pantalla web y su API. Es el sistema de origen que la [fábrica de migración](https://github.com/luisalvarezepam1/fabrica-migracion) analiza y migra a otro stack.
 
 > Todos los datos son inventados. No representa a ningún banco, cliente ni cuenta real.
 
@@ -8,30 +8,25 @@ Aplicación de ejemplo de un **banco ficticio** para el workshop de IA agéntica
 
 ## Qué hace
 
-- Clientes y cuentas de ahorro y corrientes en DOP y USD.
-- Transferencias **propias**, a **terceros** del mismo banco e **interbancarias**, con comisión, impuesto y límite diario.
-- Idempotencia con la cabecera `Idempotency-Key`.
-- Reverso el mismo día.
-- Movimientos por cuenta y bitácora de auditoría.
-- Pantallas web sencillas y una API JSON en `/api`.
+- Seis cuentas de ejemplo en DOP.
+- Transferencias propias y a terceros, con comisión, impuesto, límite diario e idempotencia (`Idempotency-Key`).
+- Una pantalla web (`/`) para ver las cuentas, transferir y ver el historial, sobre la misma API JSON (`/api`).
 
-Stack: Python 3.12, Flask 3, SQLite (SQL directo, sin ORM) y gunicorn.
+Stack: Python 3.12, Flask 3, SQLite (SQL directo) y gunicorn.
+
+> La versión anterior, más grande (clientes, movimientos, reversos, auditoría, USD e interbancarias), está en la rama [`v1.4-completa`](https://github.com/luisalvarezepam1/banco-transferencias-legado/tree/v1.4-completa).
 
 ## Correr en local
 
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
 pytest -q
-python wsgi.py          # http://127.0.0.1:5050 (PORT para cambiarlo)
+python wsgi.py                     # http://127.0.0.1:5050 (variable PORT para cambiarlo)
 ```
 
-La base se crea en `instance/transferencias.db` con datos de ejemplo. Para volver al estado inicial: `POST /api/demo/reiniciar`.
-
-## Modo demo
-
-Con `DEMO_MODE=1` (valor por defecto) la API acepta la cabecera `X-Demo-Ahora` con una fecha ISO 8601 para simular la hora. Sirve para probar el límite diario y los reversos.
+La base se crea en `instance/transferencias.db` con datos de ejemplo. Para volver al estado inicial: `POST /api/demo/reiniciar`. Con `DEMO_MODE=1` (por defecto), la cabecera `X-Demo-Ahora` simula la hora.
 
 ## Documentación
 
