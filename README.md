@@ -24,7 +24,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-dev.txt
 pytest -q
-python wsgi.py          # http://127.0.0.1:5000
+python wsgi.py          # http://127.0.0.1:5050 (PORT para cambiarlo)
 ```
 
 La base se crea en `instance/transferencias.db` con datos de ejemplo. Para volver al estado inicial: `POST /api/demo/reiniciar`.
