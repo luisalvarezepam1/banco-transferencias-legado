@@ -4,6 +4,8 @@ Aplicación de ejemplo de un **banco ficticio** para el workshop de IA agéntica
 
 > Todos los datos son inventados. No representa a ningún banco, cliente ni cuenta real.
 
+**En Azure:** https://app-bancolegado-439f6a.azurewebsites.net · API: [/api/salud](https://app-bancolegado-439f6a.azurewebsites.net/api/salud)
+
 ## Qué hace
 
 - Clientes y cuentas de ahorro y corrientes en DOP y USD.
