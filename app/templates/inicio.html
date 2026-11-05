@@ -1,20 +1,24 @@
 {% extends "base.html" %}
 {% block contenido %}
 <h1>Clientes y cuentas</h1>
+<p class="sub">{{ clientes|length }} clientes · {{ clientes|map(attribute='cuentas')|map('length')|sum }} cuentas</p>
 <div class="tarjetas">
 {% for c in clientes %}
   <section class="tarjeta">
-    <h2>{{ c.nombre }}</h2>
-    <p class="dim">{{ c.id }} · {{ c.segmento }}</p>
-    <table>
-      <thead><tr><th>Cuenta</th><th>Tipo</th><th class="num">Saldo</th><th>Estado</th></tr></thead>
-      <tbody>
-      {% for a in c.cuentas %}
-        <tr><td><a href="{{ url_for('web.cuenta', numero=a.numero) }}">{{ a.numero }}</a></td><td>{{ a.tipo }}</td>
-            <td class="num">{{ a.moneda }} {{ a.saldo }}</td><td>{{ a.estado }}</td></tr>
-      {% endfor %}
-      </tbody>
-    </table>
+    <div class="tarjeta__cab">
+      <div><h2>{{ c.nombre }}</h2><p class="dim" style="margin:2px 0 0">{{ c.id }}</p></div>
+      <span class="chip chip--gris">{{ c.segmento }}</span>
+    </div>
+    <ul class="cuentas">
+    {% for a in c.cuentas %}
+      <li>
+        <a class="num-cta" href="{{ url_for('web.cuenta', numero=a.numero) }}">{{ a.numero }}</a>
+        <span class="saldo">{{ a.moneda }} {{ a.saldo|dinero }}</span>
+        <span class="meta"><span class="dim">{{ a.tipo|capitalize }}</span>{% if a.estado != 'ACTIVA' %}<span class="chip chip--error">{{ a.estado }}</span>{% endif %}</span>
+        <span></span>
+      </li>
+    {% endfor %}
+    </ul>
   </section>
 {% endfor %}
 </div>

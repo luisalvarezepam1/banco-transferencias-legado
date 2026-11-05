@@ -24,6 +24,22 @@ def create_app(config=None):
     from .api import api
     from .web import web
 
+    @app.template_filter("dinero")
+    def _dinero(texto):
+        """"85000.00" -> "85,000.00" (solo para pantalla; la API conserva el formato sin separadores)."""
+        entero, _, dec = str(texto).partition(".")
+        signo = "-" if entero.startswith("-") else ""
+        return f"{signo}{int(entero.lstrip('-') or 0):,}.{dec or '00'}"
+
+    @app.template_filter("fecha")
+    def _fecha(iso):
+        """"2026-11-05T10:00:00-04:00" -> "05/11/2026 10:00"."""
+        if not iso:
+            return ""
+        d, _, h = str(iso).partition("T")
+        a, m, dia = d.split("-")
+        return f"{dia}/{m}/{a} {h[:5]}"
+
     app.register_blueprint(api)
     app.register_blueprint(web)
     app.teardown_appcontext(db.cerrar)

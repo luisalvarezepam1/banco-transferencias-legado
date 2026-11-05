@@ -8,10 +8,16 @@
 </head>
 <body>
   <header class="barra">
-    <a class="marca" href="{{ url_for('web.inicio') }}">Transferencias Inmediatas <span>v1.4 · legado</span></a>
-    <nav><a href="{{ url_for('web.inicio') }}">Cuentas</a><a href="{{ url_for('web.transferir') }}">Transferir</a><a href="/api/salud">API</a></nav>
+    <div class="barra__in">
+      <a class="marca" href="{{ url_for('web.inicio') }}">Transferencias Inmediatas <small>v1.4 · legado</small></a>
+      <nav>
+        <a href="{{ url_for('web.inicio') }}" class="{{ 'activo' if request.endpoint in ('web.inicio', 'web.cuenta') }}">Cuentas</a>
+        <a href="{{ url_for('web.transferir') }}" class="{{ 'activo' if request.endpoint == 'web.transferir' }}">Transferir</a>
+        <a href="/api/salud">API</a>
+      </nav>
+    </div>
   </header>
-  <p class="aviso">Banco ficticio para el workshop de IA agéntica. Todos los datos son inventados.</p>
+  <div class="aviso"><p>Banco ficticio para el workshop de IA agéntica. Todos los datos son inventados.</p></div>
   <main>{% block contenido %}{% endblock %}</main>
 </body>
 </html>
