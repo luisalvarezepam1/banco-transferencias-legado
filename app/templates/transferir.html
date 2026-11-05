@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block titulo %}Transferir{% endblock %}
+{% block contenido %}
+<h1>Nueva transferencia</h1>
+{% if error %}<p class="error"><b>{{ error.codigo }}</b>: {{ error.mensaje }}</p>{% endif %}
+<form method="post" class="formulario">
+  <label>Cuenta de origen
+    <select name="cuenta_origen" required>
+      {% for c in clientes %}{% for a in c.cuentas %}
+        <option value="{{ a.numero }}" {% if a.numero == datos.cuenta_origen %}selected{% endif %}>{{ a.numero }} · {{ c.nombre }} · {{ a.moneda }} {{ a.saldo }}</option>
+      {% endfor %}{% endfor %}
+    </select>
+  </label>
+  <label>Banco destino
+    <select name="banco_destino">
+      {% for b in ['POPULAR', 'BANCO_A', 'BANCO_B'] %}<option {% if b == datos.banco_destino %}selected{% endif %}>{{ b }}</option>{% endfor %}
+    </select>
+  </label>
+  <label>Cuenta destino <input name="cuenta_destino" value="{{ datos.cuenta_destino }}" required placeholder="7001-0003"></label>
+  <label>Monto <input name="monto" value="{{ datos.monto }}" required inputmode="decimal" placeholder="1670.00"></label>
+  <label>Concepto <input name="concepto" value="{{ datos.concepto }}" maxlength="80"></label>
+  <button type="submit" class="boton">Transferir</button>
+</form>
+<p class="dim">Propias: sin cargo. Terceros: DOP 10.00 + impuesto 0.15%. Interbancarias: 0.25% (mín. 25.00, máx. 300.00) + impuesto 0.15%.</p>
+{% endblock %}

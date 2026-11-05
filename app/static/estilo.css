@@ -1,0 +1,24 @@
+:root { --fondo: #f6f7f9; --texto: #1d2733; --dim: #5b6775; --borde: #d9dee5; --acento: #1f5fbf; --error: #b42318; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--fondo); color: var(--texto); }
+.barra { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: #12243d; color: #fff; flex-wrap: wrap; gap: 8px; }
+.barra a { color: #fff; text-decoration: none; }
+.marca { font-weight: 700; } .marca span { font-weight: 400; opacity: .7; font-size: 13px; }
+nav a { margin-left: 16px; }
+.aviso { margin: 0; padding: 6px 20px; background: #fff4d6; font-size: 13px; }
+main { max-width: 1100px; margin: 0 auto; padding: 20px 16px 48px; }
+h1 { font-size: 24px; } h2 { font-size: 17px; margin: 0 0 4px; }
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.tarjeta { background: #fff; border: 1px solid var(--borde); border-radius: 10px; padding: 16px; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--borde); font-size: 14px; }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dim { color: var(--dim); font-size: 13px; }
+a { color: var(--acento); }
+.boton { display: inline-block; background: var(--acento); color: #fff; border: 0; border-radius: 8px; padding: 9px 16px; font: inherit; cursor: pointer; text-decoration: none; }
+.boton--sec { background: #fff; color: var(--acento); border: 1px solid var(--acento); margin-top: 16px; }
+.formulario { display: grid; gap: 12px; max-width: 520px; }
+.formulario label { display: grid; gap: 4px; font-weight: 600; font-size: 14px; }
+.formulario input, .formulario select { font: inherit; padding: 8px; border: 1px solid var(--borde); border-radius: 6px; width: 100%; }
+.error { color: var(--error); background: #fdecea; padding: 10px 12px; border-radius: 8px; }
+.ficha { max-width: 560px; } .ficha th { width: 40%; color: var(--dim); font-weight: 500; }

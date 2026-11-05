@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block titulo %}Cuenta {{ cuenta.numero }}{% endblock %}
+{% block contenido %}
+<h1>Cuenta {{ cuenta.numero }}</h1>
+<p>{{ cuenta.cliente.nombre }} · {{ cuenta.tipo }} · <b>{{ cuenta.moneda }} {{ cuenta.saldo }}</b> · {{ cuenta.estado }}</p>
+<p><a class="boton" href="{{ url_for('web.transferir', origen=cuenta.numero) }}">Transferir desde esta cuenta</a></p>
+<h2>Movimientos</h2>
+<table>
+  <thead><tr><th>Fecha</th><th>Tipo</th><th>Descripción</th><th class="num">Importe</th><th class="num">Saldo</th></tr></thead>
+  <tbody>
+  {% for m in movimientos %}
+    <tr><td>{{ m.fecha }}</td><td>{{ m.tipo }}</td><td>{% if m.transferencia_id %}<a href="{{ url_for('web.comprobante', tid=m.transferencia_id) }}">{{ m.descripcion }}</a>{% else %}{{ m.descripcion }}{% endif %}</td>
+        <td class="num">{{ m.importe }}</td><td class="num">{{ m.saldo }}</td></tr>
+  {% else %}
+    <tr><td colspan="5" class="dim">Sin movimientos.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Transferencias Inmediatas{% endblock %} · Banco ficticio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="{{ url_for('web.inicio') }}">Transferencias Inmediatas <span>v1.4 · legado</span></a>
+    <nav><a href="{{ url_for('web.inicio') }}">Cuentas</a><a href="{{ url_for('web.transferir') }}">Transferir</a><a href="/api/salud">API</a></nav>
+  </header>
+  <p class="aviso">Banco ficticio para el workshop de IA agéntica. Todos los datos son inventados.</p>
+  <main>{% block contenido %}{% endblock %}</main>
+</body>
+</html>

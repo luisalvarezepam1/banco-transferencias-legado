@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>No se pudo completar</h1>
+<p class="error"><b>{{ error.codigo }}</b>: {{ error.mensaje }}</p>
+<p><a href="{{ url_for('web.inicio') }}">Volver</a></p>
+{% endblock %}
